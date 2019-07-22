@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:gravity="center">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="100dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:text="欢迎使用Sink代码混淆工具"
+			android:id="@+id/tv"/>
+
+	</RelativeLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:layout_centerVertical="true"
+		android:gravity="center">
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:id="@+id/choose_dex"
+			android:layout_margin="10dp">
+
+			<EditText
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:ems="10"
+				android:enabled="false"
+				android:hint="选择混淆Dex路径"
+				android:layout_weight="1.0"
+				android:id="@+id/dex"/>
+
+			<Button
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="选择"
+				android:textColor="#FFFFFF"
+				android:id="@+id/dex_btn"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:layout_gravity="center"
+			android:id="@+id/choose_rule"
+			android:gravity="center"
+			android:layout_margin="10dp"
+			android:layout_below="@id/choose_dex">
+
+			<EditText
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:ems="10"
+				android:enabled="false"
+				android:hint="选择混淆规则"
+				android:layout_weight="1.0"
+				android:id="@+id/rule"/>
+
+			<Button
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="选择"
+				android:textColor="#FFFFFF"
+				android:id="@+id/rule_btn"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:layout_gravity="center"
+			android:gravity="center"
+			android:layout_margin="10dp"
+			android:layout_below="@id/choose_rule">
+
+			<EditText
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:ems="10"
+				android:enabled="false"
+				android:hint="选择插件"
+				android:layout_weight="1.0"
+				android:id="@+id/plug"/>
+
+			<Button
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="选择"
+				android:textColor="#FFFFFF"
+				android:id="@+id/plug_btn"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<Button
+			android:textColor="?android:attr/textColorPrimaryInverse"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="开始混淆"
+			android:drawableStart="@drawable/ic_edit_24dp"
+			android:backgroundTint="?android:attr/colorAccent"
+			android:drawableTint="?android:attr/textColorPrimaryInverse"
+			style="@style/Widget.FloatingActionButton.Extended"
+			android:id="@+id/start"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentEnd="true"
+			android:layout_margin="10dp"/>
+
+	</RelativeLayout>
+
+</LinearLayout>
+

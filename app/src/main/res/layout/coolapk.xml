@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:gravity="center"
+	android:layout_gravity="center">
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_gravity="center"
+		android:gravity="center"
+		android:layout_marginTop="15dp">
+
+		<de.hdodenhof.circleimageview.CircleImageView
+			android:layout_height="52dp"
+			android:layout_width="52dp"
+			android:id="@+id/zxs"
+			android:layout_margin="10dp"/>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:orientation="vertical"
+			android:layout_marginStart="15dp"
+			android:layout_weight="1.0">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:layout_width="wrap_content"
+				android:text="_致橡树"
+				android:textSize="17sp"
+				android:textColor="#000000"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:text="SinkProGuard\nUI设计师"
+				android:layout_marginTop="10dp"
+				android:textColor="#9a9a9a"
+				android:textSize="13sp"/>
+
+		</LinearLayout>
+
+		<Button
+			android:layout_height="32dp"
+			android:layout_width="110dp"
+			android:background="@drawable/coolapk"
+			android:layout_gravity="center"
+			android:layout_marginEnd="5dp"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_gravity="center"
+		android:gravity="center"
+		android:layout_marginTop="20dp">
+
+		<de.hdodenhof.circleimageview.CircleImageView
+			android:layout_height="52dp"
+			android:layout_width="52dp"
+			android:id="@+id/sink"
+			android:layout_margin="10dp"/>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:orientation="vertical"
+			android:layout_marginStart="15dp"
+			android:layout_weight="1.0">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:layout_width="wrap_content"
+				android:text="SinkDev"
+				android:textSize="17sp"
+				android:textColor="#000000"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:text="SinkProGuard\n苦逼程序员"
+				android:layout_marginTop="10dp"
+				android:textColor="#9a9a9a"
+				android:textSize="13sp"/>
+
+		</LinearLayout>
+
+		<Button
+			android:layout_height="32dp"
+			android:layout_width="110dp"
+			android:background="@drawable/coolapk"
+			android:layout_gravity="center"
+			android:layout_marginEnd="5dp"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+
