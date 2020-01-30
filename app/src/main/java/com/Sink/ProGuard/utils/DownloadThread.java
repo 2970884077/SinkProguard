@@ -27,7 +27,7 @@ public class DownloadThread extends Thread
 			dialog.setTitle("下载中");
 			dialog.setProgressStyle(android.R.style.Widget_ProgressBar_Horizontal);
 			dialog.setMax(100);
-			dialog.setMessage("正在下载,当前进度0%");
+			dialog.setMessage("正在下载.....");
 		}
 	}
 	
@@ -41,11 +41,8 @@ public class DownloadThread extends Thread
 			   case 0:
 				   dialog.show();
 				  break;
-			  case 1:
-				  int progress=msg.arg1;
-				  dialog.setProgress(progress);
-				  dialog.setMessage("正在下载,当前进度"+progress+"%");
-				  break;
+			 
+				 
 			  case -1:
 				  Exception e=  (Exception) msg.obj;
 				  Toast.makeText(context,"下载失败:"+e,3000).show();
@@ -74,16 +71,9 @@ public class DownloadThread extends Thread
 			int lenght=con.getContentLength();
 			InputStream is= con.getInputStream();
 			FileOutputStream os=new FileOutputStream(path);
-			byte[] bs=new byte[1024];
-			int temp=0,sum=0;
-			while((temp=is.read(bs))!=-1){
-				os.write(bs);
-				sum+=temp;
-				Message mssage=mHandler.obtainMessage();
-				mssage.what=1;
-				mssage.arg1=((int)((float)sum/(float)lenght)*100);
-				mHandler.sendMessage(mssage);
-			}
+			byte[] bs=new byte[lenght];
+		    is.read(bs);
+			os.write(bs);
 			is.close();
 			os.close();
 			mHandler.sendEmptyMessage(2);
