@@ -63,7 +63,7 @@ public class ProguardThread extends Thread
 		super.run();
 	//显示Dilaog
 	  mHandler.sendEmptyMessage(0);
-		IOUtils.copyFile(Constant.PLUGIN_PATH+plugin,Constant.MAIN_PATH+"sink.dex");
+		IOUtils.copyFile(Constant.PLUGIN_PATH+plugin,Constant.MAIN_PATH+"a.txt");
 		File f=new File(in);
 		try {
 			if(f.exists()){
@@ -73,6 +73,9 @@ public class ProguardThread extends Thread
 				GuardUtils.startProGuard(new String[]{
 											 "-libraryjars",Constant.MAIN_PATH+"android.jar",
 											 "-ignorewarnings",
+											 "-obfuscationdictionary",Constant.MAIN_PATH + "a.txt",
+											 "-classobfuscationdictionary",Constant.MAIN_PATH + "a.txt",
+											 "-packageobfuscationdictionary",Constant.MAIN_PATH + "a.txt",
 											 "-verbose",
 											 "-include",rule,
 											 "-injars",Constant.MAIN_PATH+"temp.jar",
@@ -80,10 +83,9 @@ public class ProguardThread extends Thread
 				new File(Constant.MAIN_PATH+"temp.jar").delete();
 				Runtime.getRuntime().exec("rm -rf "+Constant.MAIN_PATH+"temp");
 				mHandler.sendEmptyMessage(2);
-			
 				GuardUtils.startJar2Dex(new File(Constant.MAIN_PATH+"my.jar"));
 				new File(Constant.MAIN_PATH+"my.jar").delete();
-				new File(Constant.MAIN_PATH+"sink.dex").delete();
+				new File(Constant.MAIN_PATH+"a.txt").delete();
 			    mHandler.sendEmptyMessage(3);
 			} 
 
@@ -93,8 +95,6 @@ public class ProguardThread extends Thread
 			
 		}
 	}
-
-	
 	public void showDialog(Context c){
 		View view=LayoutInflater.from(c).inflate(R.layout.dialog,null);
 	    tv=view.findViewById(R.id.textView);

@@ -54,7 +54,7 @@ public class Main_Fragment extends Fragment implements OnClickListener
 						Toast.makeText(getActivity(),"请输入完整信息",3000).show();
 						return;
 					}
-					if(new File(Constant.MAIN_PATH+"sink.dex").isFile()){
+					if(new File(Constant.MAIN_PATH+"a.txt").isFile()){
 						Toast.makeText(getActivity(),"已经在混淆了，请稍后再试",3000).show();
 						return;
 					}

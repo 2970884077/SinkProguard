@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
 		requestAllPower();		
 		//检测配置文件
-		if(new File(Constant.MAIN_PATH+"sink.dex").isFile()){
-			new File(Constant.MAIN_PATH+"sink.dex").delete();
+		if(new File(Constant.MAIN_PATH+"a.txt").isFile()){
+			new File(Constant.MAIN_PATH+"a.txt").delete();
 		}
 		if(!new File(Constant.PLUGIN_PATH).isDirectory()){
 			new File(Constant.PLUGIN_PATH).mkdirs();
@@ -49,6 +49,14 @@ public class MainActivity extends AppCompatActivity
 			try
 			{
 				IOUtils.copyFile(getResources().getAssets().open("android.jar"), Constant.MAIN_PATH + "android.jar");
+			}
+			catch (IOException e)
+			{}
+		}
+		if(new File(Constant.MAIN_PATH+"temp").isFile()){
+			try
+			{
+				Runtime.getRuntime().exec("rm -rf " + Constant.MAIN_PATH + "temp");
 			}
 			catch (IOException e)
 			{}
@@ -89,6 +97,7 @@ public class MainActivity extends AppCompatActivity
                     
 				}else{
 					Toast.makeText(this,"哦豁，权限被拒绝了哦~",Toast.LENGTH_SHORT).show();
+					finish();
 				}
 				break;
 			default:
