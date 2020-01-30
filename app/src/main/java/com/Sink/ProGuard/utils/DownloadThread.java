@@ -68,12 +68,16 @@ public class DownloadThread extends Thread
 			con.setRequestMethod("GET");
 		    con.setReadTimeout(8000);
 			con.setConnectTimeout(8000);
-			int lenght=con.getContentLength();
+			
 			InputStream is= con.getInputStream();
 			FileOutputStream os=new FileOutputStream(path);
-			byte[] bs=new byte[lenght];
-		    is.read(bs);
-			os.write(bs);
+			byte[] bs=new byte[1024];
+			int i=0;
+			while((i=is.read(bs))>0){
+				os.write(bs,0,i);
+				os.flush();
+			}
+		 
 			is.close();
 			os.close();
 			mHandler.sendEmptyMessage(2);
