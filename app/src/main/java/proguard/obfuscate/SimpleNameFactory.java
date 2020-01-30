@@ -53,7 +53,7 @@ public class SimpleNameFactory implements NameFactory
     {
         this(true);
 
-		
+
     }
 
 
@@ -78,7 +78,7 @@ public class SimpleNameFactory implements NameFactory
 
 		}
         this.generateMixedCaseNames = generateMixedCaseNames;
-		
+
     }
 
 
@@ -86,14 +86,14 @@ public class SimpleNameFactory implements NameFactory
 
     public void reset()
     {
-		
+
         index = 0;
     }
 
 
     public String nextName()
     {
-  
+
         try
 		{
 			return (String)mName.invoke(null, index++);
@@ -103,8 +103,8 @@ public class SimpleNameFactory implements NameFactory
 			System.out.println("---------------错误来了--------");
 			e.printStackTrace();
 		}
-	   System.out.println("----------由于错误，将使用默认字典---------");
-	   return name(index++);
+		System.out.println("----------由于错误，将使用默认字典---------");
+		return name(index++);
     }
 
 
@@ -163,7 +163,7 @@ public class SimpleNameFactory implements NameFactory
     private char charAt(int index)
     {
         return (char)((index < CHARACTER_COUNT ? 'a' - 0               :
-                                                 'A' - CHARACTER_COUNT) + index);
+			'A' - CHARACTER_COUNT) + index);
     }
 
 
@@ -188,3 +188,4 @@ public class SimpleNameFactory implements NameFactory
         }
     }
 }
+

@@ -1,19 +1,21 @@
 package com.Sink.ProGuard.utils;
 import android.content.*;
+import android.os.*;
 import android.support.v7.app.*;
 import android.view.*;
 import android.widget.*;
 import com.Sink.ProGuard.*;
 import java.io.*;
-import android.os.*;
-import android.support.v7.app.AlertDialog.*;
+import java.util.*;
 
 public class ProguardThread extends Thread
 {
 	private Context context;
 	private String in,rule,plugin;
-	private PrintStream err, out;
+	
 	private AlertDialog b;
+
+	private TextView tv;
 
 	public ProguardThread(Context context, String in, String rule, String plugin)
 	{
@@ -30,12 +32,23 @@ public class ProguardThread extends Thread
 			super.handleMessage(msg);
 			if(msg.what==0){
 				showDialog(context);
-			}else{
-				if(b!=null){
-					System.setErr(err);
-					System.setOut(out);
+				tv.setText("欢迎使用SinkProguard(混淆过程缓慢请耐心等待).....");
+				tv.append("\n正在进行Dex2Jar...");
+			}else if(msg.what==1){
+				tv.append("\nDex2Jar完毕");
+				tv.append("\n正在进行混淆...");
+			}else if(msg.what==2){
+				tv.append("\n混淆完毕");
+				tv.append("\n正在进行Jar2Dex...");
+			}else if(msg.what==-1){
+				tv.append(((Exception) msg.obj).toString());
+			}
+			else{ 
+				tv.append("\n 混淆结束....");
+				Toast.makeText(context,"混淆完成！",3000).show();
+				if(b!=null && b.isShowing()){
 					b.dismiss();
-					Toast.makeText(context,"混淆完成！",3000).show();
+					
 				}
 			}
 			
@@ -55,39 +68,36 @@ public class ProguardThread extends Thread
 		try {
 			if(f.exists()){
 				GuardUtils.startDex2Jar(f);
+				mHandler.sendEmptyMessage(1);
+				ZipUtils.ZipFolder(Constant.MAIN_PATH+"temp/",Constant.MAIN_PATH+"temp.jar");
 				GuardUtils.startProGuard(new String[]{
 											 "-libraryjars",Constant.MAIN_PATH+"android.jar",
+											 "-ignorewarnings",
+											 "-verbose",
 											 "-include",rule,
 											 "-injars",Constant.MAIN_PATH+"temp.jar",
 											 "-outjars",Constant.MAIN_PATH+"my.jar"});
 				new File(Constant.MAIN_PATH+"temp.jar").delete();
+				Runtime.getRuntime().exec("rm -rf "+Constant.MAIN_PATH+"temp");
+				mHandler.sendEmptyMessage(2);
+			
 				GuardUtils.startJar2Dex(new File(Constant.MAIN_PATH+"my.jar"));
 				new File(Constant.MAIN_PATH+"my.jar").delete();
 				new File(Constant.MAIN_PATH+"sink.dex").delete();
-			    mHandler.sendEmptyMessage(1);
+			    mHandler.sendEmptyMessage(3);
 			} 
 
 		}catch(Exception e) {
+			mHandler.obtainMessage(-1,e).sendToTarget();
 			e.printStackTrace();
 			
 		}
 	}
-	
-	public void setLog(TextView tv,ScrollView sl){
-		err=System.err;
-		out=System.err;
-		LogUtils log = new LogUtils(tv, sl);
-        PrintStream ps = new PrintStream(log);
-        System.setErr(ps);
-        System.setOut(ps);
-		System.out.println("欢迎使用Sink ProGuard.....");
-		
-	}
+
 	
 	public void showDialog(Context c){
 		View view=LayoutInflater.from(c).inflate(R.layout.dialog,null);
-		TextView tv=view.findViewById(R.id.textView);
-		ScrollView sl=view.findViewById(R.id.list);
+	    tv=view.findViewById(R.id.textView);
 		AlertDialog b= new AlertDialog.Builder(c)
 			.setTitle("正在混淆....")
 			.setView(view)
@@ -96,13 +106,11 @@ public class ProguardThread extends Thread
 				@Override
 				public void onClick(DialogInterface p1,int p2)
 				{
-					System.setErr(err);
-					System.setOut(out);
 					p1.dismiss();
 				}
 			}).create();
-		//设置LOG
-	   setLog(tv,sl);
+	
+	 
 	   b.show();
 	}
 }

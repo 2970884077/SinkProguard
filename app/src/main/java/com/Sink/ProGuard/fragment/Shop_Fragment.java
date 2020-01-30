@@ -52,7 +52,9 @@ public class Shop_Fragment extends Fragment
 							mDatas.add(shop);
 						}
 					}
-					catch(JSONException e) {}
+					catch(JSONException e) {
+						Toast.makeText(getActivity(),e.toString(),3000).show();
+					}
 					getActivity().runOnUiThread(new Runnable(){
 							@Override
 							public void run()

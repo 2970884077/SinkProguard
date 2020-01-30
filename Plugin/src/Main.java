@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main
 {
-	public String name(int i){
+	public static String name(int i){
 		  Random a =new Random(i);
 	      int  j =  a.nextInt();
 		  int z =j;
@@ -19,7 +19,7 @@ public class Main
 		  return b.toString();
 	}
 	
-	public char getC(int i){
+	public static char getC(int i){
 		int start = 0x0100;
         int end = 0x1100;
 		char c=0;

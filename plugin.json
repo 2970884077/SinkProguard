@@ -1,6 +1,6 @@
 {"plugin":[
 {
-"name":"混淆插件1",
+"name":"默认混淆插件",
 "author":"Sink",
 "hash":"bfe35258a72e43bf20943530cf894fee",
 "url":"https://github.com/DisableSnow/SinkProguard/blob/master/%E6%B7%B7%E6%B7%86%E6%8F%92%E4%BB%B61.jar?raw=true"

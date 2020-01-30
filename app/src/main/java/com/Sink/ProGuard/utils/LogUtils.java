@@ -7,7 +7,7 @@ import java.io.*;
 public class LogUtils extends OutputStream implements Runnable {
 		TextView out;
 		ScrollView scroll;
-	H h;
+	    H h;
 
 
 
@@ -41,13 +41,15 @@ public class LogUtils extends OutputStream implements Runnable {
 
 
 		class H extends Handler {
-
+               int i=0;
+			   boolean ls=false;
+			   FileOutputStream f=null;
 				@Override
 				public void handleMessage(Message msg) {
-					
-						out.append((CharSequence) msg.obj);
+					   String s= (String)msg.obj;
+				
+							out.setText(s);
 						
-					   
 					}
 
 			}
